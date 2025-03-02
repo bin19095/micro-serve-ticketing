@@ -1,3 +1,4 @@
 LYPwpvOWSI44YIx3
 typescript130288
+npm install mongodb
 mongodb+srv://<db_username>:<db_password>@cluster0.papl9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

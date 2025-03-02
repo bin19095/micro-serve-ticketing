@@ -5,5 +5,5 @@ export abstract class CustomError extends Error {
         Object.setPrototypeOf(this, CustomError.prototype);
     }
     
-    abstract serializeErrors() : { message: string; field?:string}[]
+    abstract serializeErrors(): Array<Pick<{ message: string; field?: string }, 'message' | 'field'>>
 }

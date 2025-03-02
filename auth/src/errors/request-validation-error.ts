@@ -1,4 +1,5 @@
 import { ValidationError } from 'express-validator';
+import { CustomError } from './custom-error';
 
 // interface CustomError{
 //     statusCode: number;
@@ -7,7 +8,7 @@ import { ValidationError } from 'express-validator';
 //         field?: string;
 //     }[]
 // }
-export class RequestValidationError extends Error{
+export class RequestValidationError extends CustomError{
      statusCode = 400;
     constructor(public errors: ValidationError[]){
         super('Invalid request parameters');

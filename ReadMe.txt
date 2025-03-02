@@ -21,4 +21,8 @@ build:
         sync:
           manual:
             - src: 'src/**/*.ts'
-              dest: .
+              dest:
+               .
+kubectl get secrets
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=your_jwt_key
+kubectl apply -f /d:/Microservices_Node_React/tickets/infra/k8s/auth-depl.yaml
