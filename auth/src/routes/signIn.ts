@@ -18,38 +18,38 @@ router.post('/api/users/signin', [
         .notEmpty()
         .withMessage('You must supply a password')	
 ],validateRequest, 
-( req: Request, res: Response) => {
-    res.send('Hi SingIn Here!');
+async( req: Request, res: Response) => {
+   
     console.log('INside singining')
-    // const { email, password } = req.body;
-    // console.log('testing')
+    const { email, password } = req.body;
+  
 
-    // const existingUser = await User. findOne({ email});
-    // if(!existingUser){
-    //    throw new BadRequestError('Invalid credentials');
-    // }
-    // const passwordsMatch = await Password.compare(
-    //     existingUser.password, 
-    //     password);
-    //     if(!passwordsMatch){
-    //         throw new BadRequestError('Invalid credentials');
-    //     }
+    const existingUser = await User. findOne({ email});
+    if(!existingUser){
+       throw new BadRequestError('Invalid credentials');
+    }
+    const passwordsMatch = await Password.compare(
+        existingUser.password, 
+        password);
+        if(!passwordsMatch){
+            throw new BadRequestError('Invalid credentials');
+        }
     
-    // // res.send('Hi there!');
-    //         if(!process.env.JWT_KEY){
-    //             throw new Error('Error creating JWT')
-    //         }
-    //             const userJwt = jwt.sign({
-    //                 id: existingUser.id,
-    //                 email: existingUser.email
-    //             }, process.env.JWT_KEY!);
+    // res.send('Hi there!');
+            if(!process.env.JWT_KEY){
+                throw new Error('Error creating JWT')
+            }
+                const userJwt = jwt.sign({
+                    id: existingUser.id,
+                    email: existingUser.email
+                }, process.env.JWT_KEY!);
                 
     
-    //         //Store it on session Object\
-    //         req.session = {
-    //             jwt: userJwt
-    //         }
-    //         res.status(200).send(existingUser);
+            //Store it on session Object\
+            req.session = {
+                jwt: userJwt
+            }
+            res.status(200).send(existingUser);
 
 });
 

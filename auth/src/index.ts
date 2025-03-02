@@ -6,9 +6,9 @@ import cookieSession from 'cookie-session';
 import { currentUserRouter} from './routes/current-user';
 
 import { signInRouter } from './routes/signIn';
-import { signOutRouter } from './routes/signOut';
-import { signUpRouter } from './routes/signUp';
+import {signOutRouter} from './routes/signOut';
 import { errorHandler } from './middlewares/error-handler';
+import { signUpRouter } from './routes/signUp';
 
 import { NotFoundError } from './errors/not-found-error';
 
@@ -20,12 +20,17 @@ app.set('trust proxy', true);
 app.use(json());
 app.use(
   cookieSession({
-    signed: false,
-    secure: true
+     // No encryption (JWT handles security)
+    signed: false, 
+    secure: process.env.NODE_ENV !== 'test', // Secure only in production
+   // secure: process.env.NODE_ENV !== 'test', // Secure only in production
   })
 );
-app.use((req, res, next) =>{
-  currentUserRouter});
+// app.use(( req: express.Request, res: express.Response, next: express.NextFunction) =>{
+
+//   currentUserRouter(req, res, next);
+// });
+app.use(currentUserRouter);
 app.use(signInRouter);
 app.use(signOutRouter);
 app.use(signUpRouter)

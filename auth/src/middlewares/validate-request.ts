@@ -14,4 +14,5 @@ export const validateRequest = (
         throw new RequestValidationError(errors.array());
     }
     console.log('validation	passed');
+    next(); // Call next() to move to the next middleware or route handler
 }
