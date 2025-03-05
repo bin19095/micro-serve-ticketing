@@ -20,7 +20,7 @@ router.post('/api/users/signin', [
 ],validateRequest, 
 async( req: Request, res: Response) => {
    
-    console.log('INside singining')
+   
     const { email, password } = req.body;
   
 

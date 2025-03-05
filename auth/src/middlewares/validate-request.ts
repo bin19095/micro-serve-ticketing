@@ -8,11 +8,10 @@ export const validateRequest = (
     next: NextFunction
 ) => {
     const errors = validationResult(req);
-    console.log('running  validation any error?', !errors.isEmpty());
+    
     if(!errors.isEmpty()){
-        console.log('Validation errors', errors.array());
         throw new RequestValidationError(errors.array());
     }
-    console.log('validation	passed');
+    
     next(); // Call next() to move to the next middleware or route handler
 }

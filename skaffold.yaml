@@ -17,3 +17,11 @@ build:
           manual:
             - src: 'src/**/*.ts'
               dest: .
+      - image: bin19095/clients1
+        context: client
+        docker:
+          dockerfile: Dockerfile
+        sync:
+          manual:
+            - src: '**/*.js'
+              dest: .
