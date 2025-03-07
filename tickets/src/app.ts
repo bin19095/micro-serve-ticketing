@@ -2,17 +2,11 @@ import express from 'express';
 import 'express-async-errors' 
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';	
-import { currentUserRouter} from './routes/current-user';
-
-import { signInRouter } from './routes/signIn';
-import {signOutRouter} from './routes/signOut';
-import { errorHandler, NotFoundError } from '@bin19095/common';
-import { signUpRouter } from './routes/signUp';
-
-
-
-
-
+import  { createTicketRouter } from './routes/new';
+import { errorHandler, NotFoundError, currentUser } from '@bin19095/common';
+import { showTicketRouter } from './routes/show';
+import { indexTicketRouter } from './routes/index';
+import { updateTicketRouter } from './routes/update';
 const app = express();
 app.set('trust proxy', true);
 app.use(json());
@@ -24,14 +18,13 @@ app.use(
    // secure: process.env.NODE_ENV !== 'test', // Secure only in production
   })
 );
-// app.use(( req: express.Request, res: express.Response, next: express.NextFunction) =>{
+app.use(currentUser);
+app.use(createTicketRouter)
+app.use(showTicketRouter);
+app.use(indexTicketRouter);
+app.use(updateTicketRouter);
 
-//   currentUserRouter(req, res, next);
-// });
-app.use(currentUserRouter);
-app.use(signInRouter);
-app.use(signOutRouter);
-app.use(signUpRouter)
+
 
 app.all('*',  (req, res) => {
    new NotFoundError();
