@@ -26,3 +26,8 @@ build:
 kubectl get secrets
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=your_jwt_key
 kubectl apply -f /d:/Microservices_Node_React/tickets/infra/k8s/auth-depl.yaml
+
+//npm udpdate --save @your_org_name/common
+
+OR
+npm install @your_org_name/common@latest
