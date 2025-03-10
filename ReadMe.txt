@@ -31,3 +31,8 @@ kubectl apply -f /d:/Microservices_Node_React/tickets/infra/k8s/auth-depl.yaml
 
 OR
 npm install @your_org_name/common@latest
+
+{
+    "email": "newTitle@concert.com",
+    "password": "password"
+}

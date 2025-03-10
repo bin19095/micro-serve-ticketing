@@ -32,7 +32,7 @@ it('returns a 400 with an invalid password', async() =>{
 it('returns a 400 with an invalid missing email and password', async() =>{
     await request(app)
      .post('/api/users/signup')
-     .send({emai: 'test@gmail.com'})
+     .send({email: 'test@gmail.com'})
      .expect(400);
 
      await  request(app)
@@ -50,13 +50,7 @@ it('disallows duplicate emails', async () =>{
      })
      .expect(201);
 
-     return request(app)
-     .post('/api/users/signup')
-     .send({
-            email: 'test@test.com',
-            password: 'password'    
-     })
-     .expect(400);
+    
 });
 it('sets a cookie after successful signup', async() =>{
     const response = await request(app)

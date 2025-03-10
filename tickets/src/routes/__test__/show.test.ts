@@ -32,7 +32,7 @@ it('returns the ticket if the ticket is found', async () => {
     .set('Cookie', global.signIn())
     .send()
     .expect(200);
-   expect(ticketResponse.body.title).toEqual(title);
+    expect(ticketResponse.body.title).toEqual(title);
     expect(ticketResponse.body.price).toEqual(price);
     
 })

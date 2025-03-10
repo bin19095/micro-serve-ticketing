@@ -1,35 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-mongo-deploy
+  name: orders-mongo-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth-mongo
+      app: orders-mongo
   template:
     metadata:
       labels:
-        app: auth-mongo
+        app: orders-mongo
     spec:
       containers:
-        - name: auth-mongo
+        - name: orders-mongo
           image: mongo
           imagePullPolicy: Always
-          volumeMounts:
-            - name: mongo-data
-              mountPath: /data/db
-      volumes:
-        - name: mongo-data
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-mongo-srv
+  name: orders-mongo-srv
 spec:
   selector:
-    app: auth-mongo
+    app: orders-mongo
   ports:
     - name: db
       protocol: TCP

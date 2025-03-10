@@ -15,6 +15,7 @@ spec:
       containers:
         - name: client
           image: bin19095/clients1
+         # imagePullPolicy: Always  # Ensure the latest image is used
 
 ---
 apiVersion : v1

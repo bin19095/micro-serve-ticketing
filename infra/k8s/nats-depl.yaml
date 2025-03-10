@@ -15,6 +15,7 @@ spec:
         containers:
         - name: nats
           image: nats-streaming:latest
+          #imagePullPolicy: Always
           ports:
             - containerPort: 4222
           resources:
