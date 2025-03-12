@@ -22,13 +22,20 @@ router.post('/api/tickets', requireAuth,
         userId: req.currentUser!.id
     });
     await ticket.save();
-    await new TicketCreatedPublisher(natsWrapper.client).publish({ 
-        id: ticket.id,
-        title: ticket.title,
-        price: ticket.price,
-        userId: ticket.userId,
+    try {
+        await new TicketCreatedPublisher(natsWrapper.client).publish({
+          id: ticket.id,
+          title: ticket.title,
+          price: ticket.price,
+          userId: ticket.userId,
+          version: ticket.version
+        });
+      } catch (err) {
+        console.error('Error publishing event:', err);
+      }
+  
           // adding this line to include updatedAt field in the response
-    });
+  
 
     
     res.status(201).send(ticket);

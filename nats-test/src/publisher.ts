@@ -7,17 +7,17 @@ const stan = nats.connect('tickets', 'publisher', {
 
 stan.on('connect', async() => {
 console.log('Publisher connected to NATS');
-const publisher = new TicketCreatedPublisher(stan);
-try{
-await publisher.publish({
-    id: '123',
-    title: 'Test Ticket',
-    price: 19.99,
-    //userId: 'abc123'  // Add this line for user-specific events (optional)
- });
-} catch(err){
-    console.error(err);
-}
+//const publisher = new TicketCreatedPublisher(stan);
+// try{
+// await publisher.publish({
+//     id: '123',
+//     title: 'Test Ticket',
+//     price: 19.99,
+//     //userId: 'abc123'  // Add this line for user-specific events (optional)
+//  });
+// } catch(err){
+//     console.error(err);
+// }
 })
 
     // console.log('Publisher connected to NATS');
